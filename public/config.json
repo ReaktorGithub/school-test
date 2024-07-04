@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "1",
+    "question": "Что должен знать фронтенд разработчик? Назовите три ключевых технологии",
+    "options": [
+      {
+        "_id": "html",
+        "text": "HTML, CSS, JavaScript"
+      },
+      {
+        "_id": "kotlin",
+        "text": "Kotlin, PHP, JavaScript"
+      },
+      {
+        "_id": "php",
+        "text": "PHP, HTML, CSS"
+      }
+    ],
+    "rightAnswerId": "html"
+  },
+  {
+    "_id": "2",
+    "question": "Что из перечисленного напрямую относится к flexbox?",
+    "options": [
+      {
+        "_id": "shrink",
+        "text": "flex-shrink"
+      },
+      {
+        "_id": "overflow",
+        "text": "text-overflow"
+      },
+      {
+        "_id": "align",
+        "text": "align-items"
+      },
+      {
+        "_id": "line",
+        "text": "line-height"
+      }
+    ],
+    "rightAnswerIds": ["shrink", "align"]
+  },
+  {
+    "_id": "3",
+    "question": "Коротко расскажите, что такое JSX",
+    "isShortAnswer": true
+  },
+  {
+    "_id": "4",
+    "question": "Расскажите подробно о useMemo",
+    "isShortAnswer": false
+  }
+]
