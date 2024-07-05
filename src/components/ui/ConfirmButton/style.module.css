@@ -1,0 +1,22 @@
+.root {
+  background: var(--color-crimson);
+  padding: 10px 32px;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-family: Calibri, sans-serif;
+  font-size: 16px;
+}
+
+.root:active {
+  background: var(--color-red);
+}
+
+.disabled {
+  background: var(--color-light-grey);
+  cursor: default;
+}
+
+.disabled:active {
+  background: var(--color-light-grey);
+}

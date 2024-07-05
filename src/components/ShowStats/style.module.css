@@ -1,0 +1,11 @@
+.root {
+  margin: 32px 0;
+}
+
+.heading {
+  margin-bottom: 12px;
+}
+
+.value {
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+.root {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.timerBox {
+  width: 82px;
+  height: 35px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 2px solid var(--color-grey);
+  display: flex;
+  align-items: center;
+}
+
+.timerWarning {
+  border-color: var(--color-yellow);
+}
+
+.timerOver {
+  border-color: var(--color-red);
+}
