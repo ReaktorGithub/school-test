@@ -2,8 +2,9 @@ import styles from './style.module.css';
 import { useAppSelector } from '../../store/store.ts';
 import cn from 'classnames';
 import { TQuestion } from '../../store/types.ts';
+import { FC } from 'react';
 
-const QuestionsBar = () => {
+const QuestionsBar: FC = () => {
   const testList = useAppSelector((state) => state.main.testList);
   const currentIndex = useAppSelector((state) => state.main.currentQuestionIndex);
 

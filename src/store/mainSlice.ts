@@ -1,19 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IAnswer, IMainSlice, TQuestion } from './types.ts';
-import { TIMER_INITIAL_SECONDS } from '../constants/constants.ts';
+import { ConfigReturnType, IAnswer, IMainSlice } from './types.ts';
+import { TIMER_DEFAULT_SECONDS } from '../constants/constants.ts';
 import axios from 'axios';
 
 const initialState: IMainSlice = {
   loading: true,
-  timer: TIMER_INITIAL_SECONDS,
+  timer: TIMER_DEFAULT_SECONDS,
   testList: [],
   currentQuestionIndex: 0,
   answerList: [],
   disableAnswer: false,
+  showStats: false,
 };
 
-export const loadTestList = createAsyncThunk('config/load', async (): Promise<TQuestion[]> => {
+export const loadTestList = createAsyncThunk('config/load', async (): Promise<ConfigReturnType> => {
   const result = await axios({
     method: 'GET',
     url: import.meta.env.VITE_CONFIG_FILE_PATH,
@@ -43,11 +44,15 @@ export const mainSlice = createSlice({
     setDisableAnswer: (state, { payload }: PayloadAction<boolean>) => {
       state.disableAnswer = payload;
     },
+    setShowStats: (state, { payload }: PayloadAction<boolean>) => {
+      state.showStats = payload;
+    },
   },
   extraReducers(builder) {
     builder
-      .addCase(loadTestList.fulfilled, (state, { payload }: PayloadAction<TQuestion[]>) => {
-        state.testList = payload;
+      .addCase(loadTestList.fulfilled, (state, { payload }: PayloadAction<ConfigReturnType>) => {
+        state.testList = payload.testData;
+        state.timer = payload.testOptions.maxTime;
         state.loading = false;
       })
       .addCase(loadTestList.pending, (state) => {
@@ -67,6 +72,7 @@ export const {
   setQuestionIndex,
   addAnswer,
   setDisableAnswer,
+  setShowStats,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

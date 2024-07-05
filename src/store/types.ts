@@ -36,4 +36,12 @@ export interface IMainSlice {
   currentQuestionIndex: number;
   answerList: IAnswer[];
   disableAnswer: boolean;
+  showStats: boolean;
+}
+
+export interface ConfigReturnType {
+  testOptions: {
+    maxTime: number;
+  };
+  testData: TQuestion[];
 }

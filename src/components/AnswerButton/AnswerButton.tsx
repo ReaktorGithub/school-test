@@ -2,7 +2,7 @@ import styles from './style.module.css';
 import { FC } from 'react';
 import ConfirmButton from '../ui/ConfirmButton';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { setQuestionIndex } from '../../store/mainSlice.ts';
+import { setQuestionIndex, setShowStats } from '../../store/mainSlice.ts';
 import { EventTypes, trigger } from '../../utils/trigger.ts';
 
 const AnswerButton: FC = () => {
@@ -17,8 +17,8 @@ const AnswerButton: FC = () => {
     dispatch(setQuestionIndex(currentIndex + 1));
 
     if (currentIndex >= totalCount - 1) {
-      console.log('end test');
       trigger(EventTypes.STOP_TIMER);
+      dispatch(setShowStats(true));
     }
   };
 

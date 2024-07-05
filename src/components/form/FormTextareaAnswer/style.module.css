@@ -1,0 +1,10 @@
+.root {
+  width: 75%;
+  resize: none;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.resizeVertical {
+  resize: vertical;
+}

@@ -2,7 +2,7 @@ import styles from './style.module.css';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import formatTime from '../../utils/formatTime.ts';
 import { FC, useEffect, useRef } from 'react';
-import { decrementTimer } from '../../store/mainSlice.ts';
+import { decrementTimer, setShowStats } from '../../store/mainSlice.ts';
 import cn from 'classnames';
 import { TIMER_WARNING_SECONDS } from '../../constants/constants.ts';
 import { EventTypes } from '../../utils/trigger.ts';
@@ -34,8 +34,9 @@ const Head: FC = () => {
   useEffect(() => {
     if (time <= 0) {
       handleStopTimer();
+      dispatch(setShowStats(true));
     }
-  }, [time]);
+  }, [dispatch, time]);
 
   return (
     <div className={styles.root}>
