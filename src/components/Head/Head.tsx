@@ -5,7 +5,7 @@ import { FC, useEffect, useRef } from 'react';
 import { decrementTimer, setShowStats } from '../../store/mainSlice.ts';
 import cn from 'classnames';
 import { TIMER_WARNING_SECONDS } from '../../constants/constants.ts';
-import { EventTypes } from '../../utils/trigger.ts';
+import { EventTypes } from '../../constants/enums.ts';
 
 const Head: FC = () => {
   const time = useAppSelector((state) => state.main.timer);
@@ -29,14 +29,16 @@ const Head: FC = () => {
     timerRef.current = setInterval(() => {
       dispatch(decrementTimer());
     }, 1000);
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (time <= 0) {
       handleStopTimer();
       dispatch(setShowStats(true));
     }
-  }, [dispatch, time]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [time]);
 
   return (
     <div className={styles.root}>

@@ -30,7 +30,6 @@ export interface IAnswer {
 }
 
 export interface IMainSlice {
-  loading: boolean;
   timer: number;
   testList: TQuestion[];
   currentQuestionIndex: number;

@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import { IQuestionOneAnswer } from '../../../store/types.ts';
 import { useAppDispatch } from '../../../store/store.ts';
 import { addAnswer, setDisableAnswer } from '../../../store/mainSlice.ts';
-import { EventTypes } from '../../../utils/trigger.ts';
+import { EventTypes } from '../../../constants/enums.ts';
 
 interface IProps {
   data: IQuestionOneAnswer;
@@ -23,11 +23,13 @@ const FormSingleAnswer: FC<IProps> = ({ data }) => {
         answer: value,
       }),
     );
-  }, [data._id, dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data._id, value]);
 
   useEffect(() => {
     dispatch(setDisableAnswer(value === null));
-  }, [dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   useEffect(() => {
     document.addEventListener(EventTypes.CONFIRM_ANSWER, confirmAnswer);

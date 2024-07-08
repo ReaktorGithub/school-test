@@ -3,8 +3,8 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { IQuestionManyAnswers } from '../../../store/types.ts';
 import { useAppDispatch } from '../../../store/store.ts';
 import { addAnswer, setDisableAnswer } from '../../../store/mainSlice.ts';
-import { EventTypes } from '../../../utils/trigger.ts';
 import putValueToArray from '../../../utils/putValueToArray.ts';
+import { EventTypes } from '../../../constants/enums.ts';
 
 interface IProps {
   data: IQuestionManyAnswers;
@@ -22,11 +22,13 @@ const FormManyAnswers: FC<IProps> = ({ data }) => {
         answer: value,
       }),
     );
-  }, [data._id, dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data._id, value]);
 
   useEffect(() => {
     dispatch(setDisableAnswer(value.length === 0));
-  }, [dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   useEffect(() => {
     document.addEventListener(EventTypes.CONFIRM_ANSWER, confirmAnswer);

@@ -3,8 +3,8 @@ import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import { IQuestionTextarea } from '../../../store/types.ts';
 import { useAppDispatch } from '../../../store/store.ts';
 import { addAnswer } from '../../../store/mainSlice.ts';
-import { EventTypes } from '../../../utils/trigger.ts';
 import cn from 'classnames';
+import { EventTypes } from '../../../constants/enums.ts';
 
 interface IProps {
   data: IQuestionTextarea;
@@ -22,7 +22,8 @@ const FormTextareaAnswer: FC<IProps> = ({ data }) => {
         answer: value,
       }),
     );
-  }, [data._id, dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data._id, value]);
 
   useEffect(() => {
     document.addEventListener(EventTypes.CONFIRM_ANSWER, confirmAnswer);

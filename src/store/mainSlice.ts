@@ -5,7 +5,6 @@ import { TIMER_DEFAULT_SECONDS } from '../constants/constants.ts';
 import axios from 'axios';
 
 const initialState: IMainSlice = {
-  loading: true,
   timer: TIMER_DEFAULT_SECONDS,
   testList: [],
   currentQuestionIndex: 0,
@@ -26,14 +25,8 @@ export const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    setLoading: (state, { payload }: PayloadAction<boolean>) => {
-      state.loading = payload;
-    },
     decrement: (state) => {
       state.timer -= 1;
-    },
-    reset: (state, { payload }: PayloadAction<number>) => {
-      state.timer = payload;
     },
     setQuestionIndex: (state, { payload }: PayloadAction<number>) => {
       state.currentQuestionIndex = payload;
@@ -53,22 +46,15 @@ export const mainSlice = createSlice({
       .addCase(loadTestList.fulfilled, (state, { payload }: PayloadAction<ConfigReturnType>) => {
         state.testList = payload.testData;
         state.timer = payload.testOptions.maxTime;
-        state.loading = false;
-      })
-      .addCase(loadTestList.pending, (state) => {
-        state.loading = true;
       })
       .addCase(loadTestList.rejected, (state) => {
         console.log('Error while loading config');
-        state.loading = false;
       });
   },
 });
 
 export const {
   decrement: decrementTimer,
-  reset: resetTimer,
-  setLoading,
   setQuestionIndex,
   addAnswer,
   setDisableAnswer,
