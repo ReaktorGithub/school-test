@@ -3,7 +3,8 @@ import { FC } from 'react';
 import ConfirmButton from '../ui/ConfirmButton';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import { setQuestionIndex, setShowStats } from '../../store/mainSlice.ts';
-import { EventTypes, trigger } from '../../utils/trigger.ts';
+import { trigger } from '../../utils/trigger.ts';
+import { EventTypes } from '../../constants/enums.ts';
 
 const AnswerButton: FC = () => {
   const totalCount = useAppSelector((state) => state.main.testList.length);
